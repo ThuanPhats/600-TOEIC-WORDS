@@ -77,7 +77,7 @@ function renderCard() {
   // Update counter
   setEl('cardCounter', `${currentIndex + 1} / ${words.length}`);
 
-  // Reset flip state — apply entrance animation to WRAPPER, not the flip element
+  // Reset flip state — entrance animation on WRAPPER (no transform, so preserve-3d is safe)
   isFlipped = false;
   const fc = document.getElementById('flashcard');
   const wrap = document.getElementById('flashcardWrap');
@@ -86,9 +86,8 @@ function renderCard() {
   }
   if (wrap) {
     wrap.classList.remove('card-enter');
-    void wrap.offsetWidth; // trigger reflow
+    void wrap.offsetWidth; // trigger reflow to restart animation
     wrap.classList.add('card-enter');
-    wrap.addEventListener('animationend', () => wrap.classList.remove('card-enter'), { once: true });
   }
 
   // Update remembered buttons
@@ -246,21 +245,23 @@ function markNotRemembered() {
 
 // ─── Event Listeners ──────────────────────────────
 function setupEventListeners() {
-  // Buttons
-  document.getElementById('btnPrev')?.addEventListener('click', goPrev);
-  document.getElementById('btnNext')?.addEventListener('click', goNext);
+  // Blur after button clicks so Space isn't captured by focused button
+  const blurThenCall = (fn) => () => { document.activeElement?.blur(); fn(); };
+
+  document.getElementById('btnPrev')?.addEventListener('click', blurThenCall(goPrev));
+  document.getElementById('btnNext')?.addEventListener('click', blurThenCall(goNext));
   document.getElementById('btnSpeak')?.addEventListener('click', e => {
     e.stopPropagation();
     speakWord();
   });
-  document.getElementById('btnRemembered')?.addEventListener('click', markRemembered);
-  document.getElementById('btnNotRemembered')?.addEventListener('click', markNotRemembered);
+  document.getElementById('btnRemembered')?.addEventListener('click', blurThenCall(markRemembered));
+  document.getElementById('btnNotRemembered')?.addEventListener('click', blurThenCall(markNotRemembered));
 
   // Flip on card click
   document.getElementById('flashcard')?.addEventListener('click', flipCard);
 
-  // Keyboard shortcuts
-  document.addEventListener('keydown', handleKeydown);
+  // Keyboard shortcuts — capture phase fires BEFORE browser processes focused-button Space click
+  document.addEventListener('keydown', handleKeydown, true);
 }
 
 function handleKeydown(e) {
