@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Học 600 từ vựng TOEIC qua 49 chủ đề với flashcard tương tác, phát âm chuẩn và theo dõi tiến trình cá nhân." />
+  <meta name="theme-color" content="#0d1117" />
+  <title>TOEIC 600 Flashcards — Học từ vựng hiệu quả</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ─── Navbar ──────────────────────────────── -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo" aria-label="TOEIC 600 Flashcards">
+        <span class="logo-icon" aria-hidden="true">📚</span>
+        TOEIC 600
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="index.html" class="active" aria-current="page">Chủ đề</a></li>
+        <li><a href="overview.html">Tổng quan</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ─── Hero ────────────────────────────────── -->
+  <main>
+    <section class="hero" aria-labelledby="heroHeading">
+      <div class="container">
+        <div class="hero-badge" aria-label="Tiếng Anh TOEIC">
+          <span aria-hidden="true">🎯</span> Tiếng Anh TOEIC
+        </div>
+        <h1 id="heroHeading">600 Từ Vựng TOEIC</h1>
+        <p>Học flashcard theo chủ đề, phát âm chuẩn, theo dõi tiến trình mọi lúc mọi nơi.</p>
+        <div class="hero-stats" role="group" aria-label="Thống kê tổng quan">
+          <div class="stat-item">
+            <span class="stat-number" id="statTopics">49</span>
+            <span class="stat-label">Chủ đề</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="statWords">593</span>
+            <span class="stat-label">Từ vựng</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="statRemembered">0</span>
+            <span class="stat-label">Đã nhớ</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Topic Grid ──────────────────────── -->
+    <section class="container" aria-labelledby="topicsHeading">
+      <div class="search-wrap" role="search">
+        <div class="search-input-wrap">
+          <span class="search-icon" aria-hidden="true">🔍</span>
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="Tìm kiếm chủ đề..."
+            autocomplete="off"
+            aria-label="Tìm kiếm chủ đề"
+          />
+        </div>
+      </div>
+
+      <div class="section-header">
+        <h2 id="topicsHeading">Tất cả chủ đề</h2>
+        <span class="section-count" id="topicCount">49 chủ đề</span>
+      </div>
+
+      <div
+        class="topic-grid"
+        id="topicGrid"
+        role="list"
+        aria-label="Danh sách chủ đề từ vựng"
+      >
+        <!-- Rendered by app.js -->
+        <div class="no-results" style="grid-column:1/-1; padding: 40px; text-align:center; color: var(--text-muted);">
+          Đang tải dữ liệu...
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ─── Toast ───────────────────────────────── -->
+  <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

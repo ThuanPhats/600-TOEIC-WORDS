@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Học flashcard từ vựng TOEIC theo chủ đề với phát âm chuẩn và ghi nhớ tiến trình." />
+  <meta name="theme-color" content="#0d1117" />
+  <title>Học flashcard — TOEIC 600</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🃏</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ─── Navbar ──────────────────────────────── -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo" aria-label="Về trang chủ">
+        <span class="logo-icon" aria-hidden="true">📚</span>
+        TOEIC 600
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="index.html">Chủ đề</a></li>
+        <li><a href="overview.html">Tổng quan</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ─── Study Layout ─────────────────────────── -->
+  <main class="container study-layout">
+
+    <!-- Header -->
+    <div class="study-header">
+      <a href="index.html" class="btn-back" id="btnBack" aria-label="Quay lại trang chủ">
+        ← Quay lại
+      </a>
+      <h1 class="study-topic-name" id="topicName">Đang tải...</h1>
+    </div>
+
+    <!-- Progress bar -->
+    <section class="progress-section" aria-label="Tiến trình học">
+      <div class="progress-info">
+        <span class="progress-text" id="progressText">0 / 0 đã nhớ</span>
+        <span class="progress-pct" id="progressPct">0%</span>
+      </div>
+      <div class="progress-bar-wrap" role="progressbar" aria-label="Tiến trình"
+           aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar-fill" id="progressFill" style="width: 0%"></div>
+      </div>
+    </section>
+
+    <!-- Flashcard area -->
+    <div class="flashcard-area">
+
+      <!-- Counter -->
+      <div style="font-size:0.85rem; color:var(--text-muted); font-weight:600;" id="cardCounter">
+        1 / 12
+      </div>
+
+      <!-- The flashcard -->
+      <div class="flashcard-wrap" aria-label="Nhấn để lật thẻ">
+        <div class="flashcard" id="flashcard" role="button" tabindex="0"
+             aria-label="Flashcard — nhấn Space hoặc click để lật">
+
+          <!-- Front: English word -->
+          <div class="card-face card-front">
+            <button class="btn-speak" id="btnSpeak"
+                    aria-label="Phát âm từ"
+                    title="Phát âm (Enter)">
+              🔊
+            </button>
+            <div class="card-hint">Từ tiếng Anh</div>
+            <div class="card-word" id="cardWord">—</div>
+            <span class="card-type-badge" id="cardType">n.</span>
+            <div style="margin-top:16px; font-size:0.75rem; color:var(--text-muted);">
+              Nhấn Space hoặc click để xem nghĩa
+            </div>
+          </div>
+
+          <!-- Back: Vietnamese meaning -->
+          <div class="card-face card-back">
+            <div class="card-hint">Nghĩa tiếng Việt</div>
+            <div class="card-meaning" id="cardMeaning">—</div>
+            <div class="card-word-back" id="cardWordBack"></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Card dot strip -->
+      <div class="card-strip" id="cardStrip" role="group" aria-label="Điều hướng thẻ"></div>
+
+      <!-- Navigation controls -->
+      <div class="card-controls" role="group" aria-label="Điều hướng">
+        <button class="btn btn-ghost" id="btnPrev" disabled aria-label="Thẻ trước (←)">
+          ← Trước
+        </button>
+
+        <button class="btn btn-remembered" id="btnRemembered" aria-label="Đánh dấu đã nhớ (phím 1)">
+          ✅ Đã nhớ
+        </button>
+
+        <button class="btn btn-not-remembered" id="btnNotRemembered" aria-label="Đánh dấu chưa nhớ (phím 2)">
+          📝 Chưa nhớ
+        </button>
+
+        <button class="btn btn-ghost" id="btnNext" aria-label="Thẻ tiếp (→)">
+          Tiếp →
+        </button>
+      </div>
+
+      <!-- Keyboard shortcuts hint -->
+      <div class="shortcuts-bar" aria-label="Phím tắt">
+        <span class="shortcut-item">
+          <kbd>←</kbd><kbd>→</kbd> Chuyển thẻ
+        </span>
+        <span class="shortcut-item">
+          <kbd>Space</kbd> Lật thẻ
+        </span>
+        <span class="shortcut-item">
+          <kbd>Enter</kbd> Phát âm
+        </span>
+        <span class="shortcut-item">
+          <kbd>1</kbd> Đã nhớ &nbsp;
+          <kbd>2</kbd> Chưa nhớ
+        </span>
+      </div>
+
+    </div><!-- /flashcard-area -->
+
+  </main>
+
+  <!-- ─── Toast ───────────────────────────────── -->
+  <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="js/study.js"></script>
+</body>
+</html>
