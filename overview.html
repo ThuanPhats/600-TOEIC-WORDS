@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Tổng quan tiến trình học từ vựng TOEIC — xem % đã nhớ của từng chủ đề." />
+  <meta name="theme-color" content="#0d1117" />
+  <title>Tổng quan tiến trình — TOEIC 600</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ─── Navbar ──────────────────────────────── -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo" aria-label="TOEIC 600 Flashcards">
+        <span class="logo-icon" aria-hidden="true">📚</span>
+        TOEIC 600
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="index.html">Chủ đề</a></li>
+        <li><a href="overview.html" class="active" aria-current="page">Tổng quan</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ─── Overview Layout ──────────────────────── -->
+  <main class="container overview-layout">
+
+    <!-- Page header -->
+    <section class="overview-hero" aria-labelledby="overviewHeading">
+      <div class="hero-badge" style="margin-bottom:16px;">
+        <span aria-hidden="true">📊</span> Tiến trình học
+      </div>
+      <h1 id="overviewHeading" style="font-size:clamp(1.6rem,4vw,2.5rem); font-weight:800; margin-bottom:8px;">
+        Tổng quan tiến trình
+      </h1>
+      <p style="color:var(--text-secondary); font-size:0.95rem;">
+        Theo dõi từng chủ đề — click vào để tiếp tục học
+      </p>
+    </section>
+
+    <!-- Stats cards -->
+    <section class="stats-grid" aria-label="Thống kê tổng hợp">
+      <div class="stat-card">
+        <span class="stat-value" id="statTotalWords">—</span>
+        <span class="stat-label">Tổng từ vựng</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" id="statTotalRemembered">—</span>
+        <span class="stat-label">Đã nhớ</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" id="statCompletedTopics">—</span>
+        <span class="stat-label">Chủ đề xong</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" id="statOverallPct">—</span>
+        <span class="stat-label">Hoàn thành</span>
+      </div>
+    </section>
+
+    <!-- Progress ring -->
+    <section class="overall-progress-wrap" aria-label="Vòng tròn tiến trình tổng thể">
+      <div class="progress-ring-container" role="img" aria-label="Tiến trình tổng thể">
+        <svg class="progress-ring-svg" viewBox="0 0 160 160" aria-hidden="true">
+          <defs>
+            <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#7c3aed"/>
+              <stop offset="100%" style="stop-color:#00d2ff"/>
+            </linearGradient>
+          </defs>
+          <circle class="progress-ring-bg" cx="80" cy="80" r="70"/>
+          <circle class="progress-ring-fill" id="ringFill" cx="80" cy="80" r="70"/>
+        </svg>
+        <div class="progress-ring-text">
+          <span class="progress-ring-pct" id="ringPct">0%</span>
+          <span class="progress-ring-label">Hoàn thành</span>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <p style="font-size:1rem; font-weight:600; color:var(--text-primary); margin-bottom:4px;">
+          Tiến trình tổng thể
+        </p>
+        <p style="font-size:0.85rem; color:var(--text-muted);">
+          Dựa trên số từ đã đánh dấu "Đã nhớ"
+        </p>
+      </div>
+    </section>
+
+    <!-- Sort controls + Reset -->
+    <div class="overview-controls" role="group" aria-label="Sắp xếp và tùy chọn">
+      <span class="overview-controls label">Sắp xếp:</span>
+      <button class="btn btn-ghost btn-sm" data-sort="least" aria-pressed="true">
+        📉 Ít nhớ nhất
+      </button>
+      <button class="btn btn-ghost btn-sm" data-sort="most" aria-pressed="false">
+        📈 Nhớ nhiều nhất
+      </button>
+      <button class="btn btn-ghost btn-sm" data-sort="alpha" aria-pressed="false">
+        🔤 A → Z
+      </button>
+      <div style="flex:1"></div>
+      <button class="btn btn-ghost btn-sm btn-danger" id="btnReset" aria-label="Xóa toàn bộ tiến trình">
+        🗑️ Reset
+      </button>
+    </div>
+
+    <!-- Topic list -->
+    <section id="overviewList" class="overview-list" aria-label="Danh sách chủ đề và tiến trình">
+      <div class="empty-state">
+        <div class="empty-icon" aria-hidden="true">⏳</div>
+        <p>Đang tải...</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─── Toast ───────────────────────────────── -->
+  <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="js/overview.js"></script>
+</body>
+</html>
