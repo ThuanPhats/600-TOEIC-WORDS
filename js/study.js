@@ -77,15 +77,18 @@ function renderCard() {
   // Update counter
   setEl('cardCounter', `${currentIndex + 1} / ${words.length}`);
 
-  // Reset flip state
+  // Reset flip state — apply entrance animation to WRAPPER, not the flip element
   isFlipped = false;
   const fc = document.getElementById('flashcard');
+  const wrap = document.getElementById('flashcardWrap');
   if (fc) {
     fc.classList.remove('flipped');
-    fc.classList.remove('card-enter');
-    // Trigger reflow for animation restart
-    void fc.offsetWidth;
-    fc.classList.add('card-enter');
+  }
+  if (wrap) {
+    wrap.classList.remove('card-enter');
+    void wrap.offsetWidth; // trigger reflow
+    wrap.classList.add('card-enter');
+    wrap.addEventListener('animationend', () => wrap.classList.remove('card-enter'), { once: true });
   }
 
   // Update remembered buttons
